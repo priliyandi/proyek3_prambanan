@@ -1649,6 +1649,81 @@ class sistem extends CI_Controller {
 		}
 
 	}
+			public function reservasi_delete() {
+
+		if($this->session->userdata("id_user")!=="" ) {
+
+			$id = $this->uri->segment(3);
+			$this->sistem_model->DeleteReservasi($id);
+
+			$this->session->set_flashdata('hapus','ok');
+			redirect("sistem/reservasi");
+
+
+		}
+		else{
+			redirect('sistem');
+
+		}
+	}
+	public function reservasi_edit() {
+
+		if($this->session->userdata("id_user")!=="" ) {
+
+			$id = $this->uri->segment(3);
+
+			$query =  $this->sistem_model->EditReservasi($id);
+
+			foreach ($query->result_array() as $value) {
+				
+				$data['nama_reservasi'] 		=  $value['nama_reservasi'];
+				$data['telp_reservasi'] 		=  $value['telp_reservasi'];
+				$data['alamat_reservasi'] 	=  $value['alamat_reservasi'];
+				$data['tgl_reservasi_masuk'] 	=  $value['tgl_reservasi_masuk'];
+				$data['tgl_reservasi_keluar'] 	=  $value['tgl_reservasi_keluar'];
+				$data['kamar_id'] 	=  $value['kamar_id'];
+				$data['status_reservasi'] 	=  $value['status_reservasi'];
+			}
+
+			$data['reservasi']	= $this->sistem_model->KelasKamar();
+			$this->template_system->load('template_system','sistem/data/reservasi/edit',$data);
+
+		}
+		else{
+			redirect('sistem');
+
+		}
+
+	}
+	public function reservasi_update() {
+
+		if($this->session->userdata("id_user")!=="" ) {
+
+			$id['id_reservasi'] = $this->input->post("id_reservasi");
+
+		
+			$in_data['nama_reservasi'] 	= $this->input->post('nama_reservasi');
+			$in_data['telp_reservasi'] 	= $this->input->post('telp_reservasi');
+			$in_data['alamat_reservasi'] 	= $this->input->post('alamat_reservasi');
+			$in_data['tgl_reservasi_masuk'] 	= $this->input->post('tgl_reservasi_masuk');
+			$in_data['tgl_reservasi_keluar'] 	= $this->input->post('tgl_reservasi_keluar');
+			$in_data['kamar_id'] 	= $this->input->post('kamar_id');
+			$in_data['status_reservasi'] 	= $this->input->post('status_reservasi');
+						
+			$this->db->update("tbl_reservasi",$in_data,$id);
+				
+						
+			$this->session->set_flashdata('update','OK');
+			redirect("sistem/reservasi");
+						
+					
+		}
+		else{
+			redirect('sistem');
+
+		}
+
+	}
 	//Akhir Reservasi
 
 

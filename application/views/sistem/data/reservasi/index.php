@@ -12,6 +12,23 @@
 				
 			</div>
 
+									<div class="portlet-body">
+							<div class="table-toolbar">
+								<div class="row">
+
+									<div class="col-md-6">
+										<div class="btn-group">
+											
+											<a class="btn green" href="<?php echo base_url();?>sistem/kamar_tambah">
+											Export PDF <i class="fa fa-print"></i>
+											</a>
+											
+										</div>
+										
+									</div>
+									
+								</div>
+							</div>
 <div class="row">
 				<div class="col-md-12">
 					
@@ -32,6 +49,7 @@
 							<thead>
 							<tr>
 								<th>No</th>
+								<th>Aksi</th>
 								<th>Nama</th>
 								<th>Telp</th>
 								<th>Alamat</th>
@@ -50,6 +68,8 @@
 										<tr >
 
 											<td><?php echo $no;?></td>
+											<td><a  href="<?php echo base_url();?>sistem/reservasi_edit/<?php echo $tampil['id_reservasi'];?>"><i class="fa fa-edit"></i></a> &nbsp;
+											<a  href="<?php echo base_url();?>sistem/reservasi_delete/<?php echo $tampil['id_reservasi'];?>" onclick="return confirm('Yakin Ingin Menghapus <?php echo $tampil['nama_reservasi'];?>?')"> <i class="fa fa-times"></i></a>
 											<td><?php echo $tampil['nama_reservasi'];?></td>
 											<td><?php echo $tampil['telp_reservasi'];?></td>
 											<td><?php echo $tampil['alamat_reservasi'];?></td>

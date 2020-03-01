@@ -228,6 +228,13 @@ class sistem_model extends CI_Model {
 			order by a.id_reservasi desc");
 
 	}
+	function DeleteReservasi($id) {
+		return $this->db->query("delete from tbl_reservasi where id_reservasi='$id' ");
+	}
+	
+	function EditReservasi($id) {
+		return $this->db->query("select * from tbl_reservasi where id_reservasi='$id' ");
+	}
 	 //Akhir New Reservasi
 
 
