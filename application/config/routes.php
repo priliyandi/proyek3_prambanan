@@ -1,4 +1,6 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -17,13 +19,13 @@
 |
 | Please see the user guide for complete details:
 |
-|	http://codeigniter.com/user_guide/general/routing.html
+|	https://codeigniter.com/user_guide/general/routing.html
 |
 | -------------------------------------------------------------------------
 | RESERVED ROUTES
 | -------------------------------------------------------------------------
 |
-| There area two reserved routes:
+| There are three reserved routes:
 |
 |	$route['default_controller'] = 'welcome';
 |
@@ -33,14 +35,49 @@
 |
 |	$route['404_override'] = 'errors/page_missing';
 |
-| This route will tell the Router what URI segments to use if those provided
-| in the URL cannot be matched to a valid route.
+| This route will tell the Router which controller/method to use if those
+| provided in the URL cannot be matched to a valid route.
 |
+|	$route['translate_uri_dashes'] = FALSE;
+|
+| This is not exactly a route, but allows you to automatically route
+| controller and method names that contain dashes. '-' isn't a valid
+| class or method name character, so it requires translation.
+| When you set this option to TRUE, it will replace ALL dashes in the
+| controller and method URI segments.
+|
+| Examples:	my-controller/index	-> my_controller/index
+|		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['default_controller'] = "home";
+$route['admin']='loginadmin';
+$route['logout']='loginadmin/logout';
+$route['promo']='padmin/promo';
+$route['slide']='padmin/slide';
+$route['check']='padmin/checkinout';
+$route['booking']='padmin/booking';
+$route['customer']='padmin/customer';
+$route['kuisioner/feedback']='padmin/feedback';
+$route['kamar']='padmin/kamar';
+$route['tipe']='padmin/tipe';
+$route['tipe/detail-tipe/(:any)']='padmin/detail_tipe/$1';
+$route['fasilitas']='padmin/fasilitas';
+$route['tipe-gallery']='padmin/tipe_gallery';
+$route['layanan']='padmin/layanan';
+$route['kategori']='padmin/kategori';
+$route['user']='padmin/user';
+$route['kuisioner']='padmin/kuisioner';
+$route['config']='padmin/config';
+$route['laporan']='padmin/laporan';
+$route['Room']='frontend/room';
+$route['Feedback']='frontend/feedback';
+$route['About']='frontend/about';
+$route['Contact']='frontend/contact';
+$route['Pembayaran']='frontend/pembayaran';
+$route['Room/detail/(:any)']='frontend/room_detail/$1';
+$route['Booking']='frontend/booking';
+$route['Booking/invoice/(:any)']='frontend/invoice/$1';
+$route['Booking/thankyou/(:any)']='frontend/thankyou/$1';
+$route['default_controller'] = 'frontend';
 $route['404_override'] = '';
-
-
-/* End of file routes.php */
-/* Location: ./application/config/routes.php */
+$route['translate_uri_dashes'] = FALSE;
